@@ -74,7 +74,7 @@ import org.xml.sax.helpers.AttributesImpl;
  * the support of XML schema. You need Xerces 2.1/2.3 and up to make
  * this class working with XML schema</p>
  */
-public class Digester extends DefaultHandler2 {
+public class Digester extends DefaultHandler2 {//解析xml使用
 
 
     // ---------------------------------------------------------- Static Fields

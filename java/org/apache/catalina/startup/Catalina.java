@@ -216,7 +216,7 @@ public class Catalina {
      *
      * @param args Command line arguments to process
      */
-    protected boolean arguments(String args[]) {
+    protected boolean arguments(String args[]) {//打印一些参数 or donothing
 
         boolean isConfig = false;
 
@@ -490,7 +490,7 @@ public class Catalina {
 
         long t1 = System.nanoTime();
 
-        initDirs();
+        initDirs();//TOMCAT_HOME/temp 文件夹，如果没有就创建，确认是文件夹
 
         // Before digester - it may be needed
         initNaming();
@@ -503,7 +503,7 @@ public class Catalina {
         File file = null;
         try {
             try {
-                file = configFile();
+                file = configFile();//tomcat 的server.xml 文件
                 inputStream = new FileInputStream(file);
                 inputSource = new InputSource(file.toURI().toURL().toString());
             } catch (Exception e) {
@@ -560,7 +560,7 @@ public class Catalina {
 
             try {
                 inputSource.setByteStream(inputStream);
-                digester.push(this);
+                digester.push(this);//解析server.xml
                 digester.parse(inputSource);
             } catch (SAXParseException spe) {
                 log.warn("Catalina.start using " + getConfigFile() + ": " +
@@ -581,8 +581,8 @@ public class Catalina {
         }
 
         getServer().setCatalina(this);
-        getServer().setCatalinaHome(Bootstrap.getCatalinaHomeFile());
-        getServer().setCatalinaBase(Bootstrap.getCatalinaBaseFile());
+        getServer().setCatalinaHome(Bootstrap.getCatalinaHomeFile());//TOMCAT_HOME、bin/lib 目录
+        getServer().setCatalinaBase(Bootstrap.getCatalinaBaseFile());//TOMCAT_HOME 的所有目录
 
         // Stream redirection
         initStreams();
@@ -611,7 +611,7 @@ public class Catalina {
     public void load(String args[]) {
 
         try {
-            if (arguments(args)) {
+            if (arguments(args)) {//catalina 容器，如果参数是start或其它的，控制台打印一些说明
                 load();
             }
         } catch (Exception e) {

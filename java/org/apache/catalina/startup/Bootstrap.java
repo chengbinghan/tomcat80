@@ -128,9 +128,9 @@ public final class Bootstrap {
 
 
     /**
-     * Daemon reference.
+     * Daemon reference.//
      */
-    private Object catalinaDaemon = null;
+    private Object catalinaDaemon = null;  //catalinaDaemon 是Catalina对象，该对象的parentClassLoader 属性是sharedClassloader 也就是commonClassLoader
 
 
     ClassLoader commonLoader = null;
@@ -444,13 +444,13 @@ public final class Bootstrap {
      *
      * @param args Command line arguments to be processed
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) {//args 参数是start, stop 等等
 
         if (daemon == null) {
             // Don't set daemon until init() has completed
             Bootstrap bootstrap = new Bootstrap();
             try {
-                bootstrap.init();
+                bootstrap.init();//初始化Catalina对象，参考catalinaDaemon
             } catch (Throwable t) {
                 handleThrowable(t);
                 t.printStackTrace();
@@ -478,7 +478,7 @@ public final class Bootstrap {
                 args[args.length - 1] = "stop";
                 daemon.stop();
             } else if (command.equals("start")) {
-                daemon.setAwait(true);
+                daemon.setAwait(true);//设置Catalina的await 为true, 这个属性的作用是:?
                 daemon.load(args);
                 daemon.start();
             } else if (command.equals("stop")) {
