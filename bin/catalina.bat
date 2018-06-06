@@ -106,6 +106,7 @@ rem                   Example (all one line)
 rem                   set TITLE=Tomcat.Cluster#1.Server#1 [%DATE% %TIME%]
 rem ---------------------------------------------------------------------------
 
+rem SET "CATALINA_OPTS=-server -Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8787"
 setlocal
 
 rem Suppress Terminate batch job on CTRL+C
