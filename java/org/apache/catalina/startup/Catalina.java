@@ -272,7 +272,7 @@ public class Catalina {
     protected Digester createStartDigester() {
         long t1=System.currentTimeMillis();
         // Initialize the digester
-        Digester digester = new Digester();
+        Digester digester = new Digester();//Digester 是tomcat解析xml的
         digester.setValidating(false);
         digester.setRulesValidation(true);
         HashMap<Class<?>, List<String>> fakeAttributes = new HashMap<>();
@@ -493,10 +493,10 @@ public class Catalina {
         initDirs();//TOMCAT_HOME/temp 文件夹，如果没有就创建，确认是文件夹
 
         // Before digester - it may be needed
-        initNaming();
+        initNaming();//初始化命名空间
 
         // Create and execute our Digester
-        Digester digester = createStartDigester();
+        Digester digester = createStartDigester();//tomcat的Digester是解析xml的对象，具体就是解析server.xml
 
         InputSource inputSource = null;
         InputStream inputStream = null;
@@ -585,7 +585,7 @@ public class Catalina {
         getServer().setCatalinaBase(Bootstrap.getCatalinaBaseFile());//TOMCAT_HOME 的所有目录
 
         // Stream redirection
-        initStreams();
+        initStreams();//输出路径
 
         // Start the new server
         try {

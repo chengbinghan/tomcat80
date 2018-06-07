@@ -479,8 +479,8 @@ public final class Bootstrap {
                 daemon.stop();
             } else if (command.equals("start")) {
                 daemon.setAwait(true);//设置Catalina的await 为true, 这个属性的作用是:?
-                daemon.load(args);
-                daemon.start();
+                daemon.load(args);//初始化Catalina，设置Catalina中的StandardServer等
+                daemon.start();//启动Catalina
             } else if (command.equals("stop")) {
                 daemon.stopServer(args);
             } else if (command.equals("configtest")) {
