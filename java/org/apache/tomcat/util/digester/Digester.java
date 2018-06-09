@@ -245,7 +245,7 @@ public class Digester extends DefaultHandler2 {//解析xml使用
      * The "root" element of the stack (in other words, the last object
      * that was popped.
      */
-    protected Object root = null;
+    protected Object root = null;//启动调试发现是Catalina对象
 
 
     /**

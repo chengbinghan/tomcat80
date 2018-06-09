@@ -478,9 +478,15 @@ public final class Bootstrap {
                 args[args.length - 1] = "stop";
                 daemon.stop();
             } else if (command.equals("start")) {
-                daemon.setAwait(true);//设置Catalina的await 为true, 这个属性的作用是:?
-                daemon.load(args);//初始化Catalina，设置Catalina中的StandardServer等
-                daemon.start();//启动Catalina
+                /**
+                 * 下面三个是反射调用Catalina对象，
+                 */
+                //设置Catalina的await 为true, 服务器启动之后据此判断是否进入启动状态
+                daemon.setAwait(true);
+                //设置Catalinad的server属性，等根据cong/server.xml创建了Server对象，并赋值给server属性，然后调用Server的init方法
+                daemon.load(args);// 这个方法结束后会打印log:org.apache.catalina.startup.Catalina.load Initialization processed in 939838 ms, 说明一个阶段结束
+                //启动Catalina，其start方法主要调用了上面server的start方法去启动服务器。
+                daemon.start();
             } else if (command.equals("stop")) {
                 daemon.stopServer(args);
             } else if (command.equals("configtest")) {
