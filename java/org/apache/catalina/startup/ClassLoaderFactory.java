@@ -226,7 +226,7 @@ public final class ClassLoaderFactory {
         return AccessController.doPrivileged(
                 new PrivilegedAction<URLClassLoader>() {
                     @Override
-                    public URLClassLoader run() {
+                    public URLClassLoader run() {   //为什么用urlclassloader?ClassLoader只能加载classpath下面的类，而URLClassLoader可以加载任意路径下的类
                         if (parent == null)
                             return new URLClassLoader(array);
                         else

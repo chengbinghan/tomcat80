@@ -92,6 +92,7 @@ public class Catalina {
      * The shared extensions class loader for this server.
      */
     protected ClassLoader parentClassLoader =
+
         Catalina.class.getClassLoader();
 
 

@@ -52,14 +52,14 @@ public class CatalinaProperties {
 
 
     /**
-     * Load properties.
+     * Load properties. 加载TOMCAT-HOME/conf/catalina.properties
      */
     private static void loadProperties() {
 
         InputStream is = null;
         Throwable error = null;
 
-        try {
+        try {//先读取-D参数，这种方式，配置文件路径都是可以配置的
             String configUrl = System.getProperty("catalina.config");
             if (configUrl != null) {
                 is = (new URL(configUrl)).openStream();
